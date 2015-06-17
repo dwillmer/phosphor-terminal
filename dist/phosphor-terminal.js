@@ -83,7 +83,7 @@ var phosphor;
                     if (options.cols) {
                         this._term.cols = options.cols;
                     }
-                    if (options.useStyle === true) {
+                    if (options.useStyle) {
                         this._term.insertStyle(this._term.document, this._term.colors[256], this._term.colors[257]);
                     }
                     else if (options.useStyle === false) {
@@ -91,15 +91,15 @@ var phosphor;
                         var sheetParent = sheetToBeRemoved.parentNode;
                         sheetParent.removeChild(sheetToBeRemoved);
                     }
-                    else if (options.useStyle !== null) {
+                    if (options.useStyle !== null) {
                         // invalidate terminal pixel size
                         this._term_row_height = 0;
-                        this.resize_term(this.width, this.height);
                     }
                     for (var key in options) {
                         this._term[key] = options[key];
                     }
                     this._config = options;
+                    this.resize_term(this.width, this.height);
                 },
                 enumerable: true,
                 configurable: true
