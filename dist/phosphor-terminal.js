@@ -88,8 +88,10 @@ var phosphor;
                     }
                     else if (options.useStyle === false) {
                         var sheetToBeRemoved = document.getElementById('term-style');
-                        var sheetParent = sheetToBeRemoved.parentNode;
-                        sheetParent.removeChild(sheetToBeRemoved);
+                        if (sheetToBeRemoved) {
+                            var sheetParent = sheetToBeRemoved.parentNode;
+                            sheetParent.removeChild(sheetToBeRemoved);
+                        }
                     }
                     if (options.useStyle !== null) {
                         // invalidate terminal pixel size
