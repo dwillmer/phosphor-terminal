@@ -120,9 +120,14 @@ class TermWidget extends Widget {
       sheetParent.removeChild(sheetToBeRemoved);
     }
 
+    if (options.useStyle !== null) {
+      // invalidate terminal pixel size
+      this._term_row_height = 0;
+      this.resize_term(this.width, this.height);
+    }
+
     this._config = options;
-    this._term_row_height = 0;
-    this.resize_term(this.width, this.height);
+    
   }
 
   protected resize_term(width: number, height: number): void {
