@@ -26,10 +26,18 @@ declare module phosphor.terminal {
          */
         dispose(): void;
         /**
+         * Set the configuration of the terminal
+         */
+        config: ITerminalConfig;
+        /**
          * Handle resize event
          */
         protected onResize(msg: ResizeMessage): void;
         private _ws;
         private _term;
+        private _dummy_term;
+        private _term_row_height;
+        private _term_col_width;
+        private _config;
     }
 }

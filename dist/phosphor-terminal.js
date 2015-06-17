@@ -30,7 +30,8 @@ var phosphor;
                 _super.call(this);
                 this.addClass('TermWidget');
                 this._ws = new WebSocket(ws_url);
-                this._term = Terminal(config || { useStyle: true });
+                this._config = config || { useStyle: true };
+                this._term = Terminal(this._config);
                 this._term.open(this.node);
                 this._term.on('data', function (data) {
                     _this._ws.send(JSON.stringify(['stdin', data]));
@@ -46,6 +47,19 @@ var phosphor;
                             break;
                     }
                 };
+                // create a dummy terminal to get row/column size
+                this._dummy_term = document.createElement('div');
+                var pre = document.createElement('pre');
+                pre.style.visibility = "hidden";
+                var span = document.createElement('span');
+                span.style.visibility = "hidden";
+                pre.appendChild(span);
+                this._dummy_term.appendChild(pre);
+                // 24 rows
+                pre.innerHTML = "<br><br><br><br><br><br><br><br><br><br><br><br>" + "<br><br><br><br><br><br><br><br><br><br><br><br>";
+                // 1 row + 80 columns
+                span.innerHTML = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+                this._term.element.appendChild(this._dummy_term);
             }
             /**
              * Dispose of the resources held by the widget.
@@ -56,14 +70,30 @@ var phosphor;
                 this._term = null;
                 _super.prototype.dispose.call(this);
             };
+            Object.defineProperty(TermWidget.prototype, "config", {
+                get: function () {
+                    return this._config;
+                },
+                /**
+                 * Set the configuration of the terminal
+                 */
+                set: function (conf) {
+                    // TODO: implement this
+                    this._term_row_height = 0;
+                },
+                enumerable: true,
+                configurable: true
+            });
             /**
              * Handle resize event
              */
             TermWidget.prototype.onResize = function (msg) {
-                var termRowHeight = this._term.element.offsetHeight / this._term.rows;
-                var termColWidth = this._term.element.offsetWidth / this._term.cols;
-                var rows = Math.max(2, Math.floor(msg.height / termRowHeight) - 1);
-                var cols = Math.max(3, Math.floor(msg.width / termColWidth) - 1);
+                if (!this._term_row_height) {
+                    this._term_row_height = this._dummy_term.offsetHeight / 25;
+                    this._term_col_width = this._dummy_term.offsetWidth / 80;
+                }
+                var rows = Math.max(2, Math.floor(msg.height / this._term_row_height) - 1);
+                var cols = Math.max(3, Math.floor(msg.width / this._term_col_width) - 1);
                 this._term.resize(cols, rows);
             };
             return TermWidget;
