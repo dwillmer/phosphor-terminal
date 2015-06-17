@@ -102,14 +102,6 @@ class TermWidget extends Widget {
    * Set the configuration of the terminal.
    */
   set config(options: ITerminalConfig) {
-    if (options.rows) {
-      this._term.rows = options.rows;
-    }
-
-    if (options.cols) {
-      this._term.cols = options.cols;
-    }
-
     if (options.useStyle) {
       this._term.insertStyle(this._term.document, this._term.colors[256], 
                              this._term.colors[257]);
@@ -119,7 +111,7 @@ class TermWidget extends Widget {
       if (sheetToBeRemoved) {
         var sheetParent = sheetToBeRemoved.parentNode;
         sheetParent.removeChild(sheetToBeRemoved);
-      }
+
     }
     
     if (options.useStyle !== null) {
@@ -143,6 +135,14 @@ class TermWidget extends Widget {
 
     var rows = Math.max(2, Math.floor(height / this._term_row_height) - 1);
     var cols = Math.max(3, Math.floor(width / this._term_col_width) - 1);
+
+    if (this._config.rows) {
+      rows = this._config.rows;
+    }
+
+    if (this._config.cols) {
+      cols = this._config.cols;
+    }
 
     this._term.resize(cols, rows);
   }
