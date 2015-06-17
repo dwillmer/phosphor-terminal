@@ -77,12 +77,6 @@ var phosphor;
                  * Set the configuration of the terminal.
                  */
                 set: function (options) {
-                    if (options.rows) {
-                        this._term.rows = options.rows;
-                    }
-                    if (options.cols) {
-                        this._term.cols = options.cols;
-                    }
                     if (options.useStyle) {
                         this._term.insertStyle(this._term.document, this._term.colors[256], this._term.colors[257]);
                     }
@@ -92,16 +86,16 @@ var phosphor;
                             var sheetParent = sheetToBeRemoved.parentNode;
                             sheetParent.removeChild(sheetToBeRemoved);
                         }
+                        if (options.useStyle !== null) {
+                            // invalidate terminal pixel size
+                            this._term_row_height = 0;
+                        }
+                        for (var key in options) {
+                            this._term[key] = options[key];
+                        }
+                        this._config = options;
+                        this.resize_term(this.width, this.height);
                     }
-                    if (options.useStyle !== null) {
-                        // invalidate terminal pixel size
-                        this._term_row_height = 0;
-                    }
-                    for (var key in options) {
-                        this._term[key] = options[key];
-                    }
-                    this._config = options;
-                    this.resize_term(this.width, this.height);
                 },
                 enumerable: true,
                 configurable: true
@@ -116,6 +110,12 @@ var phosphor;
                 }
                 var rows = Math.max(2, Math.floor(height / this._term_row_height) - 1);
                 var cols = Math.max(3, Math.floor(width / this._term_col_width) - 1);
+                if (this._config.rows) {
+                    rows = this._config.rows;
+                }
+                if (this._config.cols) {
+                    cols = this._config.cols;
+                }
                 this._term.resize(cols, rows);
             };
             /**
