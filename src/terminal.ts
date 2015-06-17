@@ -114,10 +114,10 @@ class TermWidget extends Widget {
 
     this._config = options;
     this._term_row_height = 0;
-    this._resize(this.width, this.height);
+    this.resize_term(this.width, this.height);
   }
 
-  _resize(width: number, height:number): void {
+  protected resize_term(width: number, height: number): void {
     if (!this._term_row_height) {
       this._term_row_height = this._dummy_term.offsetHeight / 25;
       this._term_col_width = this._dummy_term.offsetWidth / 80;
@@ -133,7 +133,7 @@ class TermWidget extends Widget {
    * Handle resize event
    */
   protected onResize(msg: ResizeMessage): void {
-    this._resize(msg.width, msg.height);
+    this.resize_term(msg.width, msg.height);
   }
 
   private _ws: WebSocket;
