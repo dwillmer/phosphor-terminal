@@ -83,27 +83,30 @@ var phosphor;
                     if (options.cols) {
                         this._term.cols = options.cols;
                     }
-                    for (var key in options) {
-                        this._term[key] = options[key];
-                    }
                     if (options.useStyle === true) {
                         this._term.insertStyle(this._term.document, this._term.colors[256], this._term.colors[257]);
                     }
-                    if (options.useStyle === false) {
+                    else if (options.useStyle === false) {
                         var sheetToBeRemoved = document.getElementById('term-style');
                         var sheetParent = sheetToBeRemoved.parentNode;
                         sheetParent.removeChild(sheetToBeRemoved);
                     }
-                    if (options.useStyle !== null) {
+                    else if (options.useStyle !== null) {
                         // invalidate terminal pixel size
                         this._term_row_height = 0;
                         this.resize_term(this.width, this.height);
+                    }
+                    for (var key in options) {
+                        this._term[key] = options[key];
                     }
                     this._config = options;
                 },
                 enumerable: true,
                 configurable: true
             });
+            /**
+             * Handle resizing the terminal itself.
+             */
             TermWidget.prototype.resize_term = function (width, height) {
                 if (!this._term_row_height) {
                     this._term_row_height = this._dummy_term.offsetHeight / 25;

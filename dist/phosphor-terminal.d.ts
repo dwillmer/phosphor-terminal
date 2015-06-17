@@ -29,6 +29,9 @@ declare module phosphor.terminal {
          * Set the configuration of the terminal.
          */
         config: ITerminalConfig;
+        /**
+         * Handle resizing the terminal itself.
+         */
         protected resize_term(width: number, height: number): void;
         /**
          * Handle resize event.
