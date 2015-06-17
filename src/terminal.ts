@@ -103,8 +103,8 @@ class TermWidget extends Widget {
    */
   set config(options: ITerminalConfig) {
     if (options.useStyle) {
-      this._term.insertStyle(this._term.document, this._term.colors[256], 
-                             this._term.colors[257]);
+      this._term.insertStyle(this._term.document, this._term.colors[256],
+        this._term.colors[257]);
     }
     else if (options.useStyle === false) {
       var sheetToBeRemoved = document.getElementById('term-style');
@@ -112,16 +112,17 @@ class TermWidget extends Widget {
         var sheetParent = sheetToBeRemoved.parentNode;
         sheetParent.removeChild(sheetToBeRemoved);
 
-    }
-    
-    if (options.useStyle !== null) {
-      // invalidate terminal pixel size
-      this._term_row_height = 0;
-    }
+      }
 
-    for (var key in options) { this._term[key] = (<any>options)[key]; }
-    this._config = options; 
-    this.resize_term(this.width, this.height);
+      if (options.useStyle !== null) {
+        // invalidate terminal pixel size
+        this._term_row_height = 0;
+      }
+
+      for (var key in options) { this._term[key] = (<any>options)[key]; }
+      this._config = options;
+      this.resize_term(this.width, this.height);
+    }
   }
 
   /**
