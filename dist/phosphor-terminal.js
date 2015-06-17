@@ -92,7 +92,7 @@ var phosphor;
                         this._term_row_height = 0;
                     }
                     for (var key in options) {
-                        this._term[key] = options[key];
+                        this._term.options[key] = options[key];
                     }
                     this._config = options;
                     this.resize_term(this.width, this.height);
