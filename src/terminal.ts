@@ -1,18 +1,21 @@
 /*-----------------------------------------------------------------------------
-| Copyright (c) 2014-2015, S. Chris Colbert
+| Copyright (c) 2015 Phosphor Contributors
 |
 | Distributed under the terms of the BSD 3-Clause License.
 |
 | The full license is in the file LICENSE, distributed with this software.
 |----------------------------------------------------------------------------*/
-module example {
+module phosphor.widgets {
 
-import IMessage = phosphor.core.IMessage;
+import IMessage = core.IMessage;
 
-import ResizeMessage = phosphor.widgets.ResizeMessage;
-import Widget = phosphor.widgets.Widget;
+import ResizeMessage = widgets.ResizeMessage;
+import Widget = widgets.Widget;
 
-
+/**
+ * A terminal configuration
+ */
+export
 interface ITerminalConfig {
   convertEol?: boolean;
   termName?: string;
@@ -30,8 +33,14 @@ interface ITerminalConfig {
 declare function Terminal(config: ITerminalConfig): void;
 
 
+/**
+ * A widget which manages a terminal session.
+ */
+export
 class TermWidget extends Widget {
-
+  /*
+  * Construct a new terminal.
+  */
   constructor(ws_url: string, config?: ITerminalConfig) {
     super();
     this.addClass('TermWidget');
@@ -57,6 +66,9 @@ class TermWidget extends Widget {
     };
   }
 
+  /**
+   * Dispose of the resources held by the widget.
+   */
   dispose(): void {
     this._term.destroy();
     this._ws = null;
@@ -64,6 +76,9 @@ class TermWidget extends Widget {
     super.dispose();
   }
 
+  /**
+   * Handle resize events
+   */
   protected onResize(msg: ResizeMessage): void {
     var termRowHeight = this._term.element.offsetHeight / this._term.rows;
     var termColWidth = this._term.element.offsetWidth / this._term.cols;
@@ -78,21 +93,4 @@ class TermWidget extends Widget {
   private _term: any;
 }
 
-
-function main(): void {
-
-  var protocol = (window.location.protocol.indexOf("https") === 0) ? "wss" : "ws";
-  var ws_url = protocol + "://" + window.location.host + "/websocket";
-
-  var term = new TermWidget(ws_url);
-
-  term.attach(document.getElementById('main'));
-  term.fit();
-
-  window.onresize = () => term.fit();
-
-}
-
-window.onload = main;
-
-} // module example
+} // module phosphor.widgets
