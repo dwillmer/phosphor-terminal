@@ -13,7 +13,7 @@ import ResizeMessage = widgets.ResizeMessage;
 import Widget = widgets.Widget;
 
 /**
- * A terminal configuration
+ * A terminal configuration.
  */
 export
 interface ITerminalConfig {
@@ -99,7 +99,7 @@ class TermWidget extends Widget {
   }
 
   /**
-   * Set the configuration of the terminal
+   * Set the configuration of the terminal.
    */
   set config(options: ITerminalConfig) {
     if (options.rows) {
@@ -130,7 +130,7 @@ class TermWidget extends Widget {
   }
 
   /**
-   * Handle resize event
+   * Handle resize event.
    */
   protected onResize(msg: ResizeMessage): void {
     this.resize_term(msg.width, msg.height);
@@ -144,4 +144,4 @@ class TermWidget extends Widget {
   private _config: ITerminalConfig;
 }
 
-} // module phosphor.widgets
+} // module phosphor.terminal
