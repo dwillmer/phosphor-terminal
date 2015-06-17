@@ -45,8 +45,9 @@ class TermWidget extends Widget {
     super();
     this.addClass('TermWidget');
     this._ws = new WebSocket(ws_url);
+    this._config = config || {useStyle: true};
 
-    this._term = Terminal(config || { useStyle: true });
+    this._term = Terminal(this._config);
     this._term.open(this.node);
 
     this._term.on('data', (data: string) => {
@@ -64,6 +65,22 @@ class TermWidget extends Widget {
           break;
       }
     };
+
+    // create a dummy terminal to get row/column size
+    this._dummy_term = document.createElement('div');
+    var pre = document.createElement('pre');
+    pre.style.visibility = "hidden";
+    var span = document.createElement('span');
+    span.style.visibility = "hidden";
+    pre.appendChild(span);
+    this._dummy_term.appendChild(pre);
+    // 24 rows
+    pre.innerHTML = "<br><br><br><br><br><br><br><br><br><br><br><br>" +
+                    "<br><br><br><br><br><br><br><br><br><br><br><br>"
+    // 1 row + 80 columns
+    span.innerHTML = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+    this._term.element.appendChild(this._dummy_term);
+
   }
 
   /**
@@ -76,21 +93,40 @@ class TermWidget extends Widget {
     super.dispose();
   }
 
+  get config(): ITerminalConfig {
+    return this._config;
+  }
+
+  /**
+   * Set the configuration of the terminal
+   */
+  set config(conf: ITerminalConfig) {
+    // TODO: implement this
+    this._config = conf;
+    this._term_row_height = 0;
+  }
+
   /**
    * Handle resize event
    */
   protected onResize(msg: ResizeMessage): void {
-    var termRowHeight = this._term.element.offsetHeight / this._term.rows;
-    var termColWidth = this._term.element.offsetWidth / this._term.cols;
+    if (!this._term_row_height) {
+      this._term_row_height = this._dummy_term.offsetHeight / 25;
+      this._term_col_width = this._dummy_term.offsetWidth / 80;
+    }
 
-    var rows = Math.max(2, Math.floor(msg.height / termRowHeight) - 1);
-    var cols = Math.max(3, Math.floor(msg.width / termColWidth) - 1);
+    var rows = Math.max(2, Math.floor(msg.height / this._term_row_height) - 1);
+    var cols = Math.max(3, Math.floor(msg.width / this._term_col_width) - 1);
 
     this._term.resize(cols, rows);
   }
 
   private _ws: WebSocket;
   private _term: any;
+  private _dummy_term: HTMLElement;
+  private _term_row_height: number;
+  private _term_col_width: number;
+  private _config: ITerminalConfig;
 }
 
 } // module phosphor.widgets
