@@ -2,7 +2,7 @@ declare module phosphor.terminal {
     import ResizeMessage = widgets.ResizeMessage;
     import Widget = widgets.Widget;
     /**
-     * A terminal configuration
+     * A terminal configuration.
      */
     interface ITerminalConfig {
         convertEol?: boolean;
@@ -26,11 +26,12 @@ declare module phosphor.terminal {
          */
         dispose(): void;
         /**
-         * Set the configuration of the terminal
+         * Set the configuration of the terminal.
          */
         config: ITerminalConfig;
+        protected resize_term(width: number, height: number): void;
         /**
-         * Handle resize event
+         * Handle resize event.
          */
         protected onResize(msg: ResizeMessage): void;
         private _ws;

@@ -74,7 +74,7 @@ var phosphor;
                     return this._config;
                 },
                 /**
-                 * Set the configuration of the terminal
+                 * Set the configuration of the terminal.
                  */
                 set: function (options) {
                     if (options.rows) {
@@ -89,12 +89,12 @@ var phosphor;
                     // TODO: handle styling
                     this._config = options;
                     this._term_row_height = 0;
-                    this._resize(this.width, this.height);
+                    this.resize_term(this.width, this.height);
                 },
                 enumerable: true,
                 configurable: true
             });
-            TermWidget.prototype._resize = function (width, height) {
+            TermWidget.prototype.resize_term = function (width, height) {
                 if (!this._term_row_height) {
                     this._term_row_height = this._dummy_term.offsetHeight / 25;
                     this._term_col_width = this._dummy_term.offsetWidth / 80;
@@ -104,13 +104,13 @@ var phosphor;
                 this._term.resize(cols, rows);
             };
             /**
-             * Handle resize event
+             * Handle resize event.
              */
             TermWidget.prototype.onResize = function (msg) {
-                this._resize(msg.width, msg.height);
+                this.resize_term(msg.width, msg.height);
             };
             return TermWidget;
         })(Widget);
         terminal.TermWidget = TermWidget;
     })(terminal = phosphor.terminal || (phosphor.terminal = {}));
-})(phosphor || (phosphor = {})); // module phosphor.widgets
+})(phosphor || (phosphor = {})); // module phosphor.terminal
