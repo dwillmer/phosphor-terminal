@@ -108,7 +108,7 @@ class TermWidget extends Widget {
     if (options.cols) {
       this._term.cols = options.cols;
     }
-    for (var key in options) { this._term[key] = options[key]; }
+    for (var key in options) { this._term[key] = (<any>options)[key]; }
 
     // TODO: handle styling
 
