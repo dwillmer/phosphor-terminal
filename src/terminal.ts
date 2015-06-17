@@ -105,31 +105,33 @@ class TermWidget extends Widget {
     if (options.rows) {
       this._term.rows = options.rows;
     }
+
     if (options.cols) {
       this._term.cols = options.cols;
     }
-    for (var key in options) { this._term[key] = (<any>options)[key]; }
 
     if (options.useStyle === true) {
       this._term.insertStyle(this._term.document, this._term.colors[256], 
                              this._term.colors[257]);
     }
-    if (options.useStyle === false) {
+    else if (options.useStyle === false) {
       var sheetToBeRemoved = document.getElementById('term-style');
       var sheetParent = sheetToBeRemoved.parentNode;
       sheetParent.removeChild(sheetToBeRemoved);
     }
-
-    if (options.useStyle !== null) {
+    else if (options.useStyle !== null) {
       // invalidate terminal pixel size
       this._term_row_height = 0;
       this.resize_term(this.width, this.height);
     }
 
-    this._config = options;
-    
+    for (var key in options) { this._term[key] = (<any>options)[key]; }
+    this._config = options; 
   }
 
+  /**
+   * Handle resizing the terminal itself.
+   */
   protected resize_term(width: number, height: number): void {
     if (!this._term_row_height) {
       this._term_row_height = this._dummy_term.offsetHeight / 25;
