@@ -49,16 +49,15 @@ var phosphor;
                 };
                 // create a dummy terminal to get row/column size
                 this._dummy_term = document.createElement('div');
+                this._dummy_term.style.visibility = "hidden";
                 var pre = document.createElement('pre');
-                pre.style.visibility = "hidden";
                 var span = document.createElement('span');
-                span.style.visibility = "hidden";
                 pre.appendChild(span);
-                this._dummy_term.appendChild(pre);
                 // 24 rows
                 pre.innerHTML = "<br><br><br><br><br><br><br><br><br><br><br><br>" + "<br><br><br><br><br><br><br><br><br><br><br><br>";
                 // 1 row + 80 columns
-                span.innerHTML = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
+                span.innerHTML = "012345678901234567890123456789" + "012345678901234567890123456789" + "01234567890123456789";
+                this._dummy_term.appendChild(pre);
                 this._term.element.appendChild(this._dummy_term);
             }
             /**
@@ -77,24 +76,38 @@ var phosphor;
                 /**
                  * Set the configuration of the terminal
                  */
-                set: function (conf) {
-                    // TODO: implement this
+                set: function (options) {
+                    if (options.rows) {
+                        this._term.rows = options.rows;
+                    }
+                    if (options.cols) {
+                        this._term.cols = options.cols;
+                    }
+                    for (var key in options) {
+                        this._term[key] = options[key];
+                    }
+                    // TODO: handle styling
+                    this._config = options;
                     this._term_row_height = 0;
+                    this._resize(this.width, this.height);
                 },
                 enumerable: true,
                 configurable: true
             });
-            /**
-             * Handle resize event
-             */
-            TermWidget.prototype.onResize = function (msg) {
+            TermWidget.prototype._resize = function (width, height) {
                 if (!this._term_row_height) {
                     this._term_row_height = this._dummy_term.offsetHeight / 25;
                     this._term_col_width = this._dummy_term.offsetWidth / 80;
                 }
-                var rows = Math.max(2, Math.floor(msg.height / this._term_row_height) - 1);
-                var cols = Math.max(3, Math.floor(msg.width / this._term_col_width) - 1);
+                var rows = Math.max(2, Math.floor(height / this._term_row_height) - 1);
+                var cols = Math.max(3, Math.floor(width / this._term_col_width) - 1);
                 this._term.resize(cols, rows);
+            };
+            /**
+             * Handle resize event
+             */
+            TermWidget.prototype.onResize = function (msg) {
+                this._resize(msg.width, msg.height);
             };
             return TermWidget;
         })(Widget);
