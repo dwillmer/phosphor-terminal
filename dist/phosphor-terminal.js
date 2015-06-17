@@ -86,7 +86,14 @@ var phosphor;
                     for (var key in options) {
                         this._term[key] = options[key];
                     }
-                    // TODO: handle styling
+                    if (options.useStyle === true) {
+                        this._term.insertStyle(this._term.document, this._term.colors[256], this._term.colors[257]);
+                    }
+                    if (options.useStyle === false) {
+                        var sheetToBeRemoved = document.getElementById('term-style');
+                        var sheetParent = sheetToBeRemoved.parentNode;
+                        sheetParent.removeChild(sheetToBeRemoved);
+                    }
                     this._config = options;
                     this._term_row_height = 0;
                     this.resize_term(this.width, this.height);
