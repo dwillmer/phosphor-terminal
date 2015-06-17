@@ -120,7 +120,7 @@ class TermWidget extends Widget {
       this._term_row_height = 0;
     }
 
-    for (var key in options) { this._term[key] = (<any>options)[key]; }
+    for (var key in options) { this._term.options[key] = (<any>options)[key]; }
     this._config = options;
     this.resize_term(this.width, this.height);
   }
