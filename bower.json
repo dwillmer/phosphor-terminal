@@ -36,6 +36,9 @@
     "README.md",
     "tsd.json"
   ],
-  "dependencies": {},
+  "dependencies": {
+      "phosphor": "^0.3.0",
+      "term.js": "^0.0.3"
+  },
   "devDependencies": {}
 }
