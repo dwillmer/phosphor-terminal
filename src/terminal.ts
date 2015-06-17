@@ -137,13 +137,8 @@ class TermWidget extends Widget {
     var rows = Math.max(2, Math.floor(height / this._term_row_height) - 1);
     var cols = Math.max(3, Math.floor(width / this._term_col_width) - 1);
 
-    if (this._config.rows) {
-      rows = this._config.rows;
-    }
-
-    if (this._config.cols) {
-      cols = this._config.cols;
-    }
+    rows = this._config.rows || rows;
+    cols = this._config.cols || cols;
 
     this._term.resize(cols, rows);
   }
