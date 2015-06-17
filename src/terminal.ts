@@ -7,10 +7,7 @@
 |----------------------------------------------------------------------------*/
 module phosphor.widgets {
 
-import IMessage = core.IMessage;
-
-import ResizeMessage = widgets.ResizeMessage;
-import Widget = widgets.Widget;
+import IMessage = phosphor.core.IMessage;
 
 /**
  * A terminal configuration
