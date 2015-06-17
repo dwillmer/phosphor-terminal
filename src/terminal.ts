@@ -113,16 +113,16 @@ class TermWidget extends Widget {
         sheetParent.removeChild(sheetToBeRemoved);
 
       }
-
-      if (options.useStyle !== null) {
-        // invalidate terminal pixel size
-        this._term_row_height = 0;
-      }
-
-      for (var key in options) { this._term[key] = (<any>options)[key]; }
-      this._config = options;
-      this.resize_term(this.width, this.height);
     }
+
+    if (options.useStyle !== null) {
+      // invalidate terminal pixel size
+      this._term_row_height = 0;
+    }
+
+    for (var key in options) { this._term[key] = (<any>options)[key]; }
+    this._config = options;
+    this.resize_term(this.width, this.height);
   }
 
   /**
