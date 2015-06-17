@@ -21,6 +21,8 @@ var uglify = require('gulp-uglify');
 
 
 var buildTypings = [
+  './bower_components/phosphor/dist/phosphor.d.ts',
+  './typings/es6-promise/es6-promise.d.ts'
 ];
 
 var examplesTypings = buildTypings.concat([

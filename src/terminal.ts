@@ -5,9 +5,12 @@
 |
 | The full license is in the file LICENSE, distributed with this software.
 |----------------------------------------------------------------------------*/
-module phosphor.widgets {
+module phosphor.terminal {
 
-import IMessage = phosphor.core.IMessage;
+import IMessage = core.IMessage;
+
+import ResizeMessage = widgets.ResizeMessage;
+import Widget = widgets.Widget;
 
 /**
  * A terminal configuration
@@ -74,7 +77,7 @@ class TermWidget extends Widget {
   }
 
   /**
-   * Handle resize events
+   * Handle resize event
    */
   protected onResize(msg: ResizeMessage): void {
     var termRowHeight = this._term.element.offsetHeight / this._term.rows;

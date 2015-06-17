@@ -7,7 +7,7 @@
 |----------------------------------------------------------------------------*/
 module example {
 
-import TermWidget = phosphor.widgets.TermWidget;
+import TermWidget = phosphor.terminal.TermWidget;
 
 
 function main(): void {

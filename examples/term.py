@@ -21,12 +21,14 @@ def main(argv):
     handlers = [
         (r"/websocket", TermSocket,
          {'term_manager': term_manager}),
+        (r"/bower_components/(.*)", tornado.web.StaticFileHandler,
+         {'path': '../bower_components'}),
         (r"/dist/(.*)", tornado.web.StaticFileHandler,
-         {'path': '../../dist'}),
+         {'path': '../dist'}),
         (r"/build/(.*)", tornado.web.StaticFileHandler,
          {'path': 'build'}),
         (r"/node_modules/(.*)", tornado.web.StaticFileHandler,
-         {'path': '../../node_modules'}),
+         {'path': '../node_modules'}),
         (r"/", TerminalPageHandler),
     ]
     app = tornado.web.Application(handlers, static_path='build',
