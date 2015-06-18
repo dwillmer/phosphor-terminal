@@ -30,7 +30,26 @@ interface ITerminalConfig {
 }
 
 
-declare function Terminal(config: ITerminalConfig): void;
+  declare class Terminal {
+    constructor(config: ITerminalConfig);
+
+    options: ITerminalConfig;
+
+    element: HTMLElement;
+
+    colors: number[];
+
+    rows: number;
+
+    cols: number;
+
+    open(el: HTMLElement): void;
+
+    write(msg: string): void;
+
+    resize(width: number, height: number): void;
+
+  }
 
 
 /**
@@ -47,7 +66,7 @@ class TermWidget extends Widget {
     this._ws = new WebSocket(ws_url);
     this._config = config || {useStyle: true};
 
-    this._term = Terminal(this._config);
+    this._term = new Terminal(this._config);
     this._term.open(this.node);
 
     this._term.on('data', (data: string) => {
