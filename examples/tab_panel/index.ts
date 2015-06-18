@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------------
-| Copyright (c) 2014-2015, S. Chris Colbert
+| Copyright (c) 2015 Phosphor Contributors
 |
 | Distributed under the terms of the BSD 3-Clause License.
 |
@@ -8,9 +8,7 @@
 module example {
 
 
-  import DockArea = phosphor.widgets.DockArea;
-  import DockMode = phosphor.widgets.DockMode;
-  import Tab = phosphor.widgets.Tab;
+  import BoxPanel = phosphor.widgets.BoxPanel;
   import Widget = phosphor.widgets.Widget;
 
   import TermWidget = phosphor.terminal.TermWidget;
