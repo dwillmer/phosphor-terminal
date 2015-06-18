@@ -31,7 +31,7 @@ var phosphor;
                 this.addClass('TermWidget');
                 this._ws = new WebSocket(ws_url);
                 this._config = config || { useStyle: true };
-                this._term = Terminal(this._config);
+                this._term = new Terminal(this._config);
                 this._term.open(this.node);
                 this._term.on('data', function (data) {
                     _this._ws.send(JSON.stringify(['stdin', data]));
