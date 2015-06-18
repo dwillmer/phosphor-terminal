@@ -24,6 +24,7 @@ Source Build
 ```bash
 git clone https://github.com/phosphorjs/phosphor-terminal.git
 cd phosphor-terminal
+bower install
 npm install
 tsd reinstall -so
 gulp

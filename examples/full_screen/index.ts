@@ -7,23 +7,23 @@
 |----------------------------------------------------------------------------*/
 module example {
 
-import TermWidget = phosphor.terminal.TermWidget;
+
+  import TermWidget = phosphor.terminal.TermWidget;
 
 
-function main(): void {
+  function main(): void {
 
-  var protocol = (window.location.protocol.indexOf("https") === 0) ? "wss" : "ws";
-  var ws_url = protocol + "://" + window.location.host + "/websocket";
+    var protocol = (window.location.protocol.indexOf("https") === 0) ? "wss" : "ws";
+    var ws_url = protocol + "://" + window.location.host + "/websocket";
 
-  var term = new TermWidget(ws_url);
+    var term = new TermWidget(ws_url);
 
-  term.attach(document.getElementById('main'));
-  term.fit();
+    term.attach(document.getElementById('main'));
+    term.fit();
 
-  window.onresize = () => term.fit();
+    window.onresize = () => term.fit();
 
-}
-
+  }
 window.onload = main;
 
 } // module example
