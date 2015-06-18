@@ -49,6 +49,8 @@ interface ITerminalConfig {
 
     resize(width: number, height: number): void;
 
+    destroy(): void;
+
   }
 
 
