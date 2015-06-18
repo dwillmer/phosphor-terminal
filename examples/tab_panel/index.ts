@@ -7,8 +7,9 @@
 |----------------------------------------------------------------------------*/
 module example {
 
-
-  import BoxPanel = phosphor.widgets.BoxPanel;
+  import DockMode = phosphor.widgets.DockMode;
+  import DockArea = phosphor.widgets.DockArea;
+  import Tab = phosphor.widgets.Tab;
   import Widget = phosphor.widgets.Widget;
 
   import TermWidget = phosphor.terminal.TermWidget;
