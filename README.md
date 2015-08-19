@@ -1,36 +1,30 @@
 Phosphor-Terminal
 =================
 
-Package Install
----------------
-
-**Prerequisites**
-- [bower](http://bower.io/) `npm install -g bower`
-
-```bash
-bower install phosphor-terminal
-```
-
-
 Source Build
 ------------
 
 **Prerequisites**
 - [git](http://git-scm.com/)
 - [node](http://nodejs.org/)
-- [gulp](http://gulpjs.com/) `npm install -g gulp`
-- [tsd](https://github.com/DefinitelyTyped/tsd) `npm install -g tsd@next`
+
 
 ```bash
 git clone https://github.com/phosphorjs/phosphor-terminal.git
 cd phosphor-terminal
-bower install
 npm install
-tsd reinstall -so
-gulp
+npm run build
 ```
 
 Output will be placed in the `/dist` directory.
+
+Clean Build
+-----------
+
+```bash
+npm run clean
+npm run build
+```
 
 
 Build Examples
@@ -39,7 +33,7 @@ Build Examples
 Follow the source build instructions first.
 
 ```bash
-gulp examples
+npm run build:examples
 ```
 
 Navigate to `index.html` of the example of interest.
@@ -51,7 +45,7 @@ Run Tests
 Follow the source build instructions first.
 
 ```bash
-gulp tests
+npm run tests
 ```
 
 Navigate to `tests/index.html` to run the tests.
