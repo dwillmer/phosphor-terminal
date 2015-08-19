@@ -1,29 +1,26 @@
 /*-----------------------------------------------------------------------------
-| Copyright (c) 2014-2015, Phosphor Contributors
+| Copyright (c) 2014-2015, PhosphorJS Contributors
 |
 | Distributed under the terms of the BSD 3-Clause License.
 |
 | The full license is in the file LICENSE, distributed with this software.
 |----------------------------------------------------------------------------*/
-module example {
+
+import * as terminal from "../../lib/index";
 
 
-  import TermWidget = phosphor.terminal.TermWidget;
+function main(): void {
 
+	var protocol = (window.location.protocol.indexOf("https") === 0) ? "wss" : "ws";
+	var ws_url = protocol + "://" + window.location.host + "/websocket";
 
-  function main(): void {
+	var term = new terminal.TerminalWidget(ws_url);
 
-    var protocol = (window.location.protocol.indexOf("https") === 0) ? "wss" : "ws";
-    var ws_url = protocol + "://" + window.location.host + "/websocket";
+	term.attach(document.getElementById('main'));
+	term.fit();
 
-    var term = new TermWidget(ws_url);
+	window.onresize = () => term.fit();
 
-    term.attach(document.getElementById('main'));
-    term.fit();
-
-    window.onresize = () => term.fit();
-
-  }
+}
 window.onload = main;
 
-} // module example
