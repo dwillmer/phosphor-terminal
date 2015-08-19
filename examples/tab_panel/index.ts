@@ -5,6 +5,7 @@
 |
 | The full license is in the file LICENSE, distributed with this software.
 |----------------------------------------------------------------------------*/
+'use strict';
 
 import DockMode = phosphor.widgets.DockMode;
 import DockArea = phosphor.widgets.DockArea;
