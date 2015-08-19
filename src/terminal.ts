@@ -6,55 +6,15 @@
 | The full license is in the file LICENSE, distributed with this software.
 |----------------------------------------------------------------------------*/
 'use strict';
+
+import { Terminal, ITerminalConfig } from 'term.js';
+
 import IMessage = phosphor.core.IMessage;
 
 import ResizeMessage = phosphor.widgets.ResizeMessage;
 import Widget = phosphor.widgets.Widget;
 import Size = phosphor.utility.Size;
 import SizePolicy = phosphor.widgets.SizePolicy;
-
-/**
- * A terminal configuration.
- */
-export
-  interface ITerminalConfig {
-  convertEol?: boolean;
-  termName?: string;
-  rows?: number;
-  cols?: number;
-  cursorBlink?: boolean;
-  visualBell?: boolean;
-  popOnBell?: boolean;
-  scrollback?: number;
-  screenKeys?: number;
-  useStyle?: boolean;
-}
-
-/**
- * Typing for a term.js terminal object.
- */
-declare class Terminal {
-  constructor(config: ITerminalConfig);
-
-  options: ITerminalConfig;
-
-  element: HTMLElement;
-
-  colors: number[];
-
-  rows: number;
-
-  cols: number;
-
-  open(el: HTMLElement): void;
-
-  write(msg: string): void;
-
-  resize(width: number, height: number): void;
-
-  destroy(): void;
-
-}
 
 
 /**

@@ -7,7 +7,7 @@
 |----------------------------------------------------------------------------*/
 'use strict';
 
-import * as terminal from "../../lib/index";
+import * as terminal from "../../../lib/index";
 
 
 function main(): void {

@@ -12,7 +12,7 @@ import DockArea = phosphor.widgets.DockArea;
 import Tab = phosphor.widgets.Tab;
 import Widget = phosphor.widgets.Widget;
 
-import * as terminal from "../../lib/index";
+import * as terminal from "../../../lib/index";
 
 
 class Content extends Widget {

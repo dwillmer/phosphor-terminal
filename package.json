@@ -28,9 +28,9 @@
     "clean": "rimraf lib && rimraf ./examples/**/build && rimraf ./shelljs_*",
     "build:src": "tsc --project src",
     "build:dts": "node scripts/dtsbundle.js",
-    "build:css": "node scripts/buildcss.js",
-    "build:examples": "npm run build:css && tsc --project examples/full_screen && tsc --project examples/tab_panel",
-    "build": "npm run build:src && npm run build:dts && npm run build:examples"
+    "build:examples": "node scripts/buildexamples.js",
+    "build": "npm run build:src && npm run build:dts && npm run build:examples",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
