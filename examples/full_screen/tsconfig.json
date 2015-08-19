@@ -12,6 +12,7 @@
 	"files": [
 		"../../node_modules/phosphor/dist/phosphor.d.ts",
 		"../../typings/es6-promise/es6-promise.d.ts",
-		"index.ts"
+		"../../typings/term.js.d.ts",
+		"src/index.ts"
 	]
 }
