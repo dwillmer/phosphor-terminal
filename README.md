@@ -1,6 +1,10 @@
 Phosphor-Terminal
 =================
 
+Terminal Phosphor Widget.
+
+[API Docs](http://phosphorjs.github.io/phosphor-terminal/)
+
 Source Build
 ------------
 
@@ -16,7 +20,7 @@ npm install
 npm run build
 ```
 
-Output will be placed in the `/dist` directory.
+Output will be placed in the `/lib` directory.
 
 Clean Build
 -----------
@@ -39,16 +43,16 @@ npm run build:examples
 Navigate to `index.html` of the example of interest.
 
 
-Run Tests
----------
+Build Docs
+----------
 
 Follow the source build instructions first.
 
 ```bash
-npm run tests
+npm run docs
 ```
 
-Navigate to `tests/index.html` to run the tests.
+Navigate to `docs/index.html`.
 
 
 Supported Browsers
