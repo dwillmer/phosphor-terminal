@@ -4,7 +4,7 @@
 build
 node_modules
 dist
-bower_components
 npm-debug.log
 lib
+docs
 shelljs_*

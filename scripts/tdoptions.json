@@ -4,5 +4,10 @@
 	"excludeNotExported": true,
 	"mode": "file",
 	"out": "docs",
-	"src": ["src/index.ts"]
+	"src": [
+    "src/index.ts",
+    "typings/es6-promise/es6-promise.d.ts",
+    "node_modules/phosphor/dist/phosphor.d.ts",
+    "typings/term.js.d.ts"
+  ]
 }
