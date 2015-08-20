@@ -13,7 +13,6 @@
 		"../node_modules/phosphor/dist/phosphor.d.ts",
 		"../typings/es6-promise/es6-promise.d.ts",
 		"../typings/term.js.d.ts",
-		"index.ts",
-		"terminal.ts"
+		"index.ts"
 	]
 }
