@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - '0.12'
+sudo: false
+env: 
+  matrix:
+    - GROUP=
+  global:
+    - GH_REF: github.com/phosphorjs/phosphor-terminal.git
+    - secure: "UhR9T6lieqnQ1Ot3K+TAV5HMb3hdZ6AU9DFqIeCQuKFPCezMren04IoOFLk84wti6zl4YgjYjEpLPekxctpE6gUNCADoJn6dxisz1aETtsQTdqxAG7f8Ge67PveBCxifRfpdPlxSoAqDY9sd+hj4mmjXIh/9nTVexjkD0D38pUZEXPQDp+3i3tjtdBjf8ek7ISfgdoRcyROyXm36uvp5kD8Q3UTgyG7griVZ4QAU3KkEGOnmWRclNSTamBTqQaG+cfHcCU6Dnfz6Yh0VZBMNHGA3DPnEKpggd6dj/JKn9SzefdxBHUmala2ZCBjEyjD7STjGYFeWntRejTnyTljxnqNX3TxergZRYBOVk9f213WWAN9F+1yCAFSHinjFP/x0W1qCgigL6Y/mZ2C12Eq0Moy/Pl8Ss4R5HiV/CX8ctmkuPWbvI7hjO8cYnP9LdOubrrphq9w+qBwSNBPlZMs9gEqM2PyHS5T9UB6ju3sQzV1JNWPSFNXeGgGHQ9KtYt4d0Nalsu34BBoA74Z0lYHnCb8o7kD4PizpnLPJVWQzMUZEf116wRONa0fN5GDNC5lixhYtvT6PLFQgzMNKHNpDV4twLKKM32lwMyoErL1SGLlBxuFts72Pngm5F2phvL0LvC4/dWOGC8MeEp9JpAEf6eIUTsbNEr3YQm0bl5PBC2g="
+script:
+  - npm run clean
+  - npm run build
+after_success:
+  - npm run docs:publish

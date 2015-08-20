@@ -8,15 +8,13 @@
 var dive = require('dive');
 require('shelljs/global');
 
-mkdir('-p', 'examples/full_screen/build');
-mkdir('-p', 'examples/tab_panel/build');
-
 dive(
   process.cwd() + '/examples',
   { directories: true, recursive: false, files: false },
   function(err, dir) {
-    exec("stylus " + dir + "/src/index.styl -o " + dir + "/build")
-    exec("tsc --project " + dir)
-    exec("browserify " + dir + "/build/index.js --outfile " + dir + "/build/app.js --debug")
+    mkdir('-p', dir + '/build');
+    exec("stylus " + dir + "/src/index.styl -o " + dir + "/build");
+    exec("tsc --project " + dir);
+    exec("browserify " + dir + "/build/index.js --outfile " + dir + "/build/app.js --debug");
   }
 );
