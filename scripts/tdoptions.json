@@ -1,9 +1,9 @@
 {
-	"module": "commonjs",
-	"target": "ES5",
-	"excludeNotExported": true,
-	"mode": "file",
-	"out": "docs",
+  "module": "commonjs",
+  "target": "ES5",
+  "excludeNotExported": true,
+  "mode": "file",
+  "out": "docs",
 	"src": [
     "src/index.ts",
     "typings/es6-promise/es6-promise.d.ts",
