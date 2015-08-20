@@ -17,7 +17,6 @@ Source Build
 git clone https://github.com/phosphorjs/phosphor-terminal.git
 cd phosphor-terminal
 npm install
-npm run build
 ```
 
 Output will be placed in the `/lib` directory.
